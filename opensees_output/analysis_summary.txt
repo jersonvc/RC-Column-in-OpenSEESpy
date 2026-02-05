@@ -1,0 +1,29 @@
+============================================================
+OPENSEES CYCLIC ANALYSIS SUMMARY
+WITH PLASTIC HINGE MODELING
+============================================================
+
+MODEL PARAMETERS:
+  Column Height: 1800.0 mm
+  Foundation Length: 1200.0 mm
+  Axial Load: 500.0 kN
+  Column Section: 400.0x400.0 mm
+  Cover: 40.0 mm
+  Reinforcement: 8-D20.0
+  Rho: 1.57%
+
+PLASTIC HINGE:
+  Length (Lp): 276.0 mm
+  Lp/H ratio: 15.3%
+
+CYCLIC LOADING PROTOCOL:
+  Drift levels: [0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 2.5, 3.0]%
+  Cycles per level: 3
+  Total analysis steps: 812
+
+RESULTS:
+  Total energy dissipated: 0.02 kN*m
+  Peak positive displacement: 18.00 mm (1.00%)
+  Peak negative displacement: -18.00 mm (-1.00%)
+  Peak positive base shear: 119.8 kN
+  Peak negative base shear: -118.3 kN

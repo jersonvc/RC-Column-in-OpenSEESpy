@@ -34,33 +34,33 @@ for node_tag in [1, 2, 3]:
 # Concrete Core (confined): f'c = 30 MPa = 30 N/mm²
 # Using more ductile parameters
 ops.uniaxialMaterial('Concrete02', 1, 
-                     -40.0,      # fpc (confined strength - slightly higher)
-                     -0.002,     # epsc0
-                     -8.0,       # fpcu (residual strength for better post-peak)
-                     -0.015,     # epsU (larger ultimate strain for ductility)
-                     0.1,        # lambda
-                     2.5,        # ft (small tensile strength)
-                     500.0)      # Ets (tension softening)
+                    -40.0,      # fpc (confined strength - slightly higher)
+                    -0.002,     # epsc0
+                    -8.0,       # fpcu (residual strength for better post-peak)
+                    -0.015,     # epsU (larger ultimate strain for ductility)
+                    0.1,        # lambda
+                    2.5,        # ft (small tensile strength)
+                    500.0)      # Ets (tension softening)
 
 # Concrete Cover (unconfined) - softer to promote yielding
 ops.uniaxialMaterial('Concrete02', 3,
-                     -30.0,      # fpc
-                     -0.002,     # epsc0
-                     0.0,        # fpcu (no residual for cover)
-                     -0.005,     # epsU (earlier spalling)
-                     0.1,        # lambda
-                     2.5,        # ft
-                     500.0)      # Ets
+                    -30.0,      # fpc
+                    -0.002,     # epsc0
+                    0.0,        # fpcu (no residual for cover)
+                    -0.005,     # epsU (earlier spalling)
+                    0.1,        # lambda
+                    2.5,        # ft
+                    500.0)      # Ets
 
 # Steel: REDUCED yield strength for easier yielding
 # Using Fy=300 MPa with better calibrated hardening
 ops.uniaxialMaterial('Steel02', 2, 
-                     300.0,      # Fy (N/mm²)
-                     200000.0,   # E (N/mm²)
-                     0.01,       # b (reduced strain hardening for better hysteresis)
-                     18.0,       # R0 (controls transition from elastic to plastic)
-                     0.925,      # cR1
-                     0.15)       # cR2
+                    300.0,      # Fy (N/mm²)
+                    200000.0,   # E (N/mm²)
+                    0.01,       # b (reduced strain hardening for better hysteresis)
+                    18.0,       # R0 (controls transition from elastic to plastic)
+                    0.925,      # cR1
+                    0.15)       # cR2
 
 # --- Section: 400x400 Column (mm) - MORE REALISTIC REINFORCEMENT ---
 b = 400.0
@@ -149,17 +149,17 @@ def plot_model_geometry():
     node1_coord = node_coords[1]
     node2_coord = node_coords[2]
     ax1.plot([node1_coord[0], node2_coord[0]], [node1_coord[1], node2_coord[1]], 
-             'b-', linewidth=8, label='Foundation', alpha=0.7)
+            'b-', linewidth=8, label='Foundation', alpha=0.7)
     
     # Draw plastic hinge region
     node4_coord = node_coords[4]
     ax1.plot([node2_coord[0], node4_coord[0]], [node2_coord[1], node4_coord[1]], 
-             'r-', linewidth=6, label='Plastic Hinge Region', alpha=0.8)
+            'r-', linewidth=6, label='Plastic Hinge Region', alpha=0.8)
     
     # Draw elastic column region
     node3_coord = node_coords[3]
     ax1.plot([node4_coord[0], node3_coord[0]], [node4_coord[1], node3_coord[1]], 
-             'orange', linewidth=6, label='Elastic Column', alpha=0.7)
+            'orange', linewidth=6, label='Elastic Column', alpha=0.7)
     
     # Draw nodes
     for node_tag, coord in node_coords.items():
@@ -190,7 +190,7 @@ def plot_model_geometry():
     
     # Add axial load
     ax1.arrow(0, L_fnd+H_col+200, 0, -150, head_width=100, head_length=50, 
-             fc='purple', ec='purple', linewidth=2)
+                fc='purple', ec='purple', linewidth=2)
     ax1.text(150, L_fnd+H_col+200, f'P = {P_axial/1000} kN', 
             fontsize=10, color='purple', fontweight='bold')
     
@@ -206,12 +206,12 @@ def plot_model_geometry():
     
     # Draw cover concrete (outer rectangle)
     cover_rect = Rectangle((-b/2, -h/2), b, h, linewidth=2, 
-                          edgecolor='blue', facecolor='lightblue', alpha=0.5, label='Cover Concrete')
+                            edgecolor='blue', facecolor='lightblue', alpha=0.5, label='Cover Concrete')
     ax2.add_patch(cover_rect)
     
     # Draw core concrete (inner rectangle)
     core_rect = Rectangle((-core_b/2, -core_h/2), core_b, core_h, linewidth=2, 
-                         edgecolor='darkblue', facecolor='skyblue', alpha=0.7, label='Core Concrete')
+                            edgecolor='darkblue', facecolor='skyblue', alpha=0.7, label='Core Concrete')
     ax2.add_patch(core_rect)
     
     # Draw reinforcement bars
@@ -465,17 +465,17 @@ def plot_deformed_shapes():
         node1 = node_coords[1]
         node2 = node_coords[2]
         ax.plot([node1[0], node2[0]], [node1[1], node2[1]], 
-               'b--', linewidth=2, alpha=0.5, label='Original')
+                'b--', linewidth=2, alpha=0.5, label='Original')
         
         # Plastic hinge region
         node4 = node_coords[4]
         ax.plot([node2[0], node4[0]], [node2[1], node4[1]], 
-               'r--', linewidth=2, alpha=0.5)
+                'r--', linewidth=2, alpha=0.5)
         
         # Elastic column
         node3 = node_coords[3]
         ax.plot([node4[0], node3[0]], [node4[1], node3[1]], 
-               'orange', linestyle='--', linewidth=2, alpha=0.5)
+                'orange', linestyle='--', linewidth=2, alpha=0.5)
         
         # Plot deformed shape
         # Foundation
@@ -484,19 +484,19 @@ def plot_deformed_shapes():
         node2_def = [node2[0] + node_disps[2][0]*scale_factor, 
                     node2[1] + node_disps[2][1]*scale_factor]
         ax.plot([node1_def[0], node2_def[0]], [node1_def[1], node2_def[1]], 
-               'b-', linewidth=3, alpha=0.8, label='Foundation')
+                'b-', linewidth=3, alpha=0.8, label='Foundation')
         
         # Plastic hinge region
         node4_def = [node4[0] + node_disps[4][0]*scale_factor, 
                     node4[1] + node_disps[4][1]*scale_factor]
         ax.plot([node2_def[0], node4_def[0]], [node2_def[1], node4_def[1]], 
-               'r-', linewidth=3, alpha=0.8, label='Plastic Hinge')
+                'r-', linewidth=3, alpha=0.8, label='Plastic Hinge')
         
         # Elastic column
         node3_def = [node3[0] + node_disps[3][0]*scale_factor, 
                     node3[1] + node_disps[3][1]*scale_factor]
         ax.plot([node4_def[0], node3_def[0]], [node4_def[1], node3_def[1]], 
-               'orange', linewidth=3, alpha=0.8, label='Elastic Column')
+                'orange', linewidth=3, alpha=0.8, label='Elastic Column')
         
         # Plot nodes
         for node_tag, disp in node_disps.items():
@@ -512,16 +512,16 @@ def plot_deformed_shapes():
         top_node_orig = node_coords[3]
         top_node_disp = node_disps[3]
         top_node_def = [top_node_orig[0] + top_node_disp[0]*scale_factor, 
-                       top_node_orig[1] + top_node_disp[1]*scale_factor]
+                        top_node_orig[1] + top_node_disp[1]*scale_factor]
         
         ax.annotate('', xy=(top_node_def[0], top_node_def[1]), 
-                   xytext=(top_node_orig[0], top_node_orig[1]),
-                   arrowprops=dict(arrowstyle='->', color='purple', lw=3))
+                    xytext=(top_node_orig[0], top_node_orig[1]),
+                    arrowprops=dict(arrowstyle='->', color='purple', lw=3))
         
         ax.text(top_node_orig[0]+200, top_node_orig[1]+200, 
-               f'Delta = {actual_disp:.1f} mm\n({drift:.1f}% drift)', 
-               fontsize=10, color='purple', fontweight='bold',
-               bbox=dict(boxstyle='round', facecolor='yellow', alpha=0.7))
+                f'Delta = {actual_disp:.1f} mm\n({drift:.1f}% drift)', 
+                fontsize=10, color='purple', fontweight='bold',
+                bbox=dict(boxstyle='round', facecolor='yellow', alpha=0.7))
         
         ax.set_xlabel('X (mm)', fontsize=11, fontweight='bold')
         ax.set_ylabel('Y (mm)', fontsize=11, fontweight='bold')
@@ -584,7 +584,7 @@ for drift in drift_markers:
     ax1.axvline(x=pos_disp, color='gray', linestyle='--', linewidth=0.5, alpha=0.5)
     ax1.axvline(x=neg_disp, color='gray', linestyle='--', linewidth=0.5, alpha=0.5)
     ax1.text(pos_disp, ax1.get_ylim()[1]*0.95, f'{drift}%', 
-             ha='center', fontsize=8, color='gray')
+                ha='center', fontsize=8, color='gray')
 
 # 2. Displacement History
 ax2 = plt.subplot(2, 2, 3)
